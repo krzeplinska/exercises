@@ -2,15 +2,16 @@ import unittest
 
 
 def normalize_phone_number(phone_number: str):
-    number_without_spaces = phone_number.replace("-", "")
-    if " " in number_without_spaces:
-        return number_without_spaces.replace(" ", "")
-    if len(number_without_spaces) > 9:
+    number_without_dash = phone_number.replace("-", "")
+    number_without_space = number_without_dash.replace(" ","")
+    if not number_without_space.isnumeric():
+        return "number contains invalid characters 'abc'"
+    if len(number_without_space) > 9:
         return "number is too long"
-    if len(number_without_spaces) < 9:
+    if len(number_without_space) < 9:
         return "number is too short"
 
-    return number_without_spaces
+    return number_without_space
 
 class TestPhoneNumberNormalization(unittest.TestCase):
 
