@@ -1,6 +1,17 @@
 import unittest
 
 
+def normalize_phone_number(phone_number: str):
+    number_without_spaces = phone_number.replace("-", "")
+    if " " in number_without_spaces:
+        return number_without_spaces.replace(" ", "")
+    if len(number_without_spaces) > 9:
+        return "number is too long"
+    if len(number_without_spaces) < 9:
+        return "number is too short"
+
+    return number_without_spaces
+
 class TestPhoneNumberNormalization(unittest.TestCase):
 
     def test_normalized_number_have_no_hyphens(self) -> None:
